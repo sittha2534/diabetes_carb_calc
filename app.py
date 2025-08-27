@@ -100,20 +100,21 @@ if st.button("🔍 คำนวณผลลัพธ์"):
         # คาร์บ
         carb_portion = round(carb_g_m / 15, 1)    # 1 portion carb = 15g
         rice_cup = round(carb_portion / 2, 1)     # 1 ทัพพีข้าว ≈ 30g carb = 2 portion
+        carb_examples = f"{carb_portion} portion ≈ ข้าว {rice_cup} ทัพพี หรือ ขนมปัง {carb_portion} แผ่น หรือ เส้นก๋วยเตี๋ยว {carb_portion} ถ้วย"
 
         # โปรตีน
         prot_portion = round(protein_per_meal / 7, 1)  # 1 portion protein ≈ 7g
-        examples = f"{prot_portion} ชิ้นเนื้อสัตว์ไม่ติดมัน (30 กรัม), {prot_portion} ฟองไข่, {prot_portion} ชิ้นปลาเล็ก, {prot_portion} ชิ้นเต้าหู้"
+        prot_examples = f"{prot_portion} portion ≈ เนื้อสัตว์ {prot_portion*30:.0f} กรัม หรือ ไข่ {prot_portion} ฟอง หรือ ปลา {prot_portion} ชิ้น หรือ เต้าหู้ {prot_portion} ก้อนเล็ก"
 
         meal_data.append([
             meal,
-            carb_g_m, f"{carb_portion} portion", f"{rice_cup} ทัพพี",
-            protein_per_meal, f"{prot_portion} portion", examples
+            carb_g_m, f"{carb_portion} portion", f"{rice_cup} ทัพพี", carb_examples,
+            protein_per_meal, f"{prot_portion} portion", prot_examples
         ])
 
     df_meal = pd.DataFrame(meal_data, columns=[
         "มื้ออาหาร",
-        "คาร์บ (g)", "portion คาร์บ", "≈ ข้าว (ทัพพี)",
+        "คาร์บ (g)", "portion คาร์บ", "≈ ข้าว (ทัพพี)", "ตัวอย่างคาร์บ",
         "โปรตีน (g)", "portion โปรตีน", "ตัวอย่างโปรตีน"
     ])
 
